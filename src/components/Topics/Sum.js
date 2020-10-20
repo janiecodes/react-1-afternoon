@@ -1,9 +1,45 @@
 import React, { Component } from "react";
 
 class Sum extends Component {
+    constructor(){
+        super();
+
+        this.state = {
+            number1: 0,
+            number2: 0,
+            sum: null
+
+        }
+    }
+
+    updateNumber1(val){
+        this.setState({number1: parseInt(val, 10)})
+    }
+    
+    updateNumber2(val){
+        this.setState({number2: parseInt(val,10)})
+    }
+    
+    // handleChange(number1, number2){
+    //     this.setState({number1: number1})
+    //     this.setState({number2: number2})
+    // }
+
+    sumFunction(number1, number2){  
+        this.setState({sum: number1 += number2})
+
+    }
+
+
     render(){
         return (
-            <p>Sum Component</p>
+            <div className="puzzleBox sumPB">
+                <h4>Sum</h4>
+                <input className="inputLine" onChange={(e) => this.updateNumber1(e.target.value)}></input>
+                <input className="inputLine" onChange={(e) => this.updateNumber2(e.target.value)}></input>
+                <button className="confirmationButton" onClick={() => this.sumFunction(this.state.number1, this.state.number2)}></button>
+                <span className="resultsBox">Sum: {this.state.sum}</span>
+            </div>
         )
     }
 }
